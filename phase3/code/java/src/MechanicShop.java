@@ -305,8 +305,98 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1
+             String first_name, last_name, address, phone_number;
+	      while(true) {
+            
+            System.out.println("Enter customer first name:");
+            try{
+                    first_name = in.readLine();
+                    System.out.println(first_name);
+                    if(first_name!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }      
+        
+        
+        while(true) {
+            
+            System.out.println("Enter customer last name:");
+            try{
+                    last_name = in.readLine();
+                    System.out.println(last_name);
+                    if(last_name!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        } 
+
+        while(true) {
+            
+            System.out.println("Enter customer phone number:");
+            try{
+                    phone_number = in.readLine();
+                    System.out.println(phone_number);
+                    if(phone_number!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+        
+        while(true) {
+            
+            System.out.println("Enter customer address:");
+            try{
+                    address = in.readLine();
+                    System.out.println(address);
+                    if(address!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        } 
 		
-l	}
+            	
+	}
 	
 	public static void AddMechanic(MechanicShop esql){//2
 		
