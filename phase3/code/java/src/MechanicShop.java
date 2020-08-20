@@ -306,7 +306,7 @@ public class MechanicShop{
 	
 	public static void AddCustomer(MechanicShop esql){//1
 		
-	}
+l	}
 	
 	public static void AddMechanic(MechanicShop esql){//2
 		
