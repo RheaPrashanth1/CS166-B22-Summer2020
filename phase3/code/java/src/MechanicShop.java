@@ -306,7 +306,8 @@ public class MechanicShop{
 	
 	public static void AddCustomer(MechanicShop esql){//1
              String first_name, last_name, address, phone_number;
-	      while(true) {
+		int id = 123; 
+	     while(true) {
             
             System.out.println("Enter customer first name:");
             try{
@@ -393,13 +394,115 @@ public class MechanicShop{
                 continue;
             }
 
-        } 
+        }
+			String fname = first_name;
+			String lname = last_name;
+			String phone = phone_number;
+		   
+		     /* String query = "INSERT INTO Customer (first_name, last_name, phone_number,address) VALUES (" + first_name + ", \'" + last_name + "\', \'" + phone_number + "\',\'" + address + "\');";
+*/
+String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, address) Values ( %d,'%s', '%s', '%s', '%s');",id, fname, lname, phone, address);
+
+        	try {	
+		esql.executeUpdate(query);
 		
-            	
+		}
+		catch (Exception e) {
+		System.out.println(e);
+		
+		}     	
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2
+		 int id = 1234;
+        String fname = "";
+       String lname = "";
+       
+       
+ 
+       
+        while(true) {
+            
+            System.out.println("Enter Mechanic first name:");
+            try{
+                    fname = in.readLine();
+                    System.out.println(fname);
+                    if(fname!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }      
+        
+        
+        while(true) {
+            
+            System.out.println("Enter customer last name:");
+            try{
+                    lname = in.readLine();
+                    System.out.println(lname);
+                    if(lname!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        } 
+
+        /*while(true) {
+            
+            System.out.println("Enter mechanic years experience:");
+            try{
+                    experience = in.readLine();
+                    System.out.println(experience);
+                    if(experience!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+*/
+        
+
+      ///Users/rheaprashanth String query = "INSERT INTO Mechanic (id, fname, lname, experience) VALUES (" + fname + ", \'" + lname + "\', \'" + experience + "\');";
+  int experience = 5;
+    String query = String.format( "INSERT INTO Mechanic (id, fname, lname, experience) Values ( %d,'%s', '%s', '%d');",id, fname, lname,experience);
+    // esql.executeUpdate(query);
+
+	try {
+		esql.executeUpdate(query);
 		
+		}
+		catch (Exception e) {
+		System.out.println(e);
+		
+		} 		
 	}
 	
 	public static void AddCar(MechanicShop esql){//3
