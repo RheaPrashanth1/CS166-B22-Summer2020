@@ -506,8 +506,86 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
 	}
 	
 	public static void AddCar(MechanicShop esql){//3
-		
+	    String vin, make, model = "";
+	//    int year = 2;
+
+	     
+        while(true) {
+            
+            System.out.println("Enter car VIN");
+            try{
+                   vin = in.readLine();
+                    System.out.println(vin);
+                    if(vin!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        } 
+
+        while(true) {
+            
+            System.out.println("Enter Car Make:");
+            try{
+                    make = in.readLine();
+                    System.out.println(make);
+                    if(make!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+        
+        while(true) {
+            
+            System.out.println("Enter Car Model:");
+            try{
+                    model = in.readLine();
+                    System.out.println(model);
+                    if(model!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+             
+		} catch(Exception e) {
+                System.out.println(e);
+                continue;
+            } 		
 	}
+	int year = 1970;
+		String query = String.format( "INSERT INTO Car (vin, make, model, year) Values ('%s','%s', '%s', %d);",vin,make,model,year);
+				try {
+                esql.executeUpdate(query);
+
+                }
+                catch (Exception e) {
+                System.out.println(e);
+
+                }
+
+	
+      }
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4
 		
