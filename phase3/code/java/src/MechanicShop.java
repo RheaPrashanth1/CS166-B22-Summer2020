@@ -306,7 +306,23 @@ public class MechanicShop{
 	
 	public static void AddCustomer(MechanicShop esql){//1
              String first_name, last_name, address, phone_number;
-		int id = 123; 
+		int id; 
+
+
+/*Statement stmt = connection.createStatement();
+      //Retrieving the data
+      
+            ResultSet rs = stmt.executeQuery("Show tables");
+                  System.out.println("Tables in the current database: ");
+                        while(rs.next()) {
+                                 System.out.print(rs.getString(1));
+                                          System.out.println();
+                          }
+     
+*/
+
+
+
 	     while(true) {
             
             System.out.println("Enter customer first name:");
@@ -328,7 +344,25 @@ public class MechanicShop{
             }
 
         }      
-        
+  	
+	   while(true) {
+
+            System.out.println("Enter customer id:");
+            try{
+                    
+		    id = Integer.parseInt(in.readLine());
+                    System.out.println(first_name);
+                    //if(first_name){ //(condition)
+                    break;
+                
+
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }      
         
         while(true) {
             
@@ -414,7 +448,7 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2
-		 int id = 1234;
+	//	 int id = 1234;
         String fname = "";
        String lname = "";
        
@@ -446,7 +480,7 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
         
         while(true) {
             
-            System.out.println("Enter customer last name:");
+            System.out.println("Enter mechanic last name:");
             try{
                     lname = in.readLine();
                     System.out.println(lname);
@@ -465,14 +499,38 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
             }
 
         } 
+int experience;
+int id;
 
-        /*while(true) {
+	 while(true) {
+
+            System.out.println("Enter mechanic id:");
+            try{
+                    id = Integer.parseInt(in.readLine());
+                    System.out.println(id);
+                    //if(lname!=null){ //(condition)
+                    break;
+                    //}
+
+                    //}else{
+                    //throw new Exception("Something went wrong.");
+                   // }
+
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+
+        while(true) {
             
             System.out.println("Enter mechanic years experience:");
             try{
-                    experience = in.readLine();
+                    experience  = Integer.parseInt(in.readLine());
                     System.out.println(experience);
-                    if(experience!=null){ //(condition)
+                    if(experience >= 0 && experience < 100){ //(condition)
                     break;
                     }
 
@@ -487,11 +545,11 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
             }
 
         }
-*/
+
         
 
       ///Users/rheaprashanth String query = "INSERT INTO Mechanic (id, fname, lname, experience) VALUES (" + fname + ", \'" + lname + "\', \'" + experience + "\');";
-  int experience = 5;
+  //int experience = 5;
     String query = String.format( "INSERT INTO Mechanic (id, fname, lname, experience) Values ( %d,'%s', '%s', '%d');",id, fname, lname,experience);
     // esql.executeUpdate(query);
 
@@ -553,7 +611,27 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
             }
 
         }
-        
+	int year;        
+	while(true) {
+
+            System.out.println("Enter Car Age year:");
+            try{
+                    year = Integer.parseInt(in.readLine());
+                    System.out.println(year);
+                    if(year >= 1970){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Year must be greater than 1970)");
+                    }
+
+                } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+        }
+
         while(true) {
             
             System.out.println("Enter Car Model:");
@@ -573,7 +651,9 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
                 continue;
             } 		
 	}
-	int year = 1970;
+	//int year = 1970;
+	
+	
 		String query = String.format( "INSERT INTO Car (vin, make, model, year) Values ('%s','%s', '%s', %d);",vin,make,model,year);
 				try {
                 esql.executeUpdate(query);
@@ -588,9 +668,171 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
       }
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4
+		/*String query = "";
+//String number = "9177059239";
+		try{
+			query = "SELECT C.date, C.comment, C.bill FROM Closed_Request C, Service_Request S  WHERE C.bill < 100 AND C.rid = S.rid; 
+                         esql.executeQueryAndPrintResult(query);
+		}catch(Exception e){
+			System.out.println("Query failed: " + e);
+		}
+	*/
+		String query = " ";
+		
+		String car_vin;
+		int rid;
+		int customer_id;
+		int date;
+		int odometer;
+		String complaint;
+
+		while(true) {
+
+            System.out.println("Enter car-vin (vin)");
+            try{
+                    car_vin = in.readLine();
+                    System.out.println(car_vin);
+                    if(car_vin!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+
+	while(true) {
+
+            System.out.println("Enter car complaint");
+            try{
+                   complaint = in.readLine();
+                    System.out.println(complaint);
+                    if(complaint!=null){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+	
+	 //int year;
+        while(true) {
+
+            System.out.println("Enter Odometer Reading:");
+            try{
+                    odometer = Integer.parseInt(in.readLine());
+                    System.out.println(odometer);
+                    if(odometer >= 0){ //(condition)
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Year must be greater than 0)");
+                    }
+
+                } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+        }
+
+//	 int year;
+        while(true) {
+
+            System.out.println("Enter Customer Id:");
+            try{
+                    customer_id = Integer.parseInt(in.readLine());
+                    System.out.println(customer_id);
+                    //if(year >= 1970){ //(condition)
+                    break;
+                    }
+
+                    //else{
+                    //throw new Exception("Year must be greater than 1970)");
+                   // }
+
+                 catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+        }
+
+	 //int year;
+        while(true) {
+
+            System.out.println("Enter RID:");
+            try{
+                    rid = Integer.parseInt(in.readLine());
+                    System.out.println(rid);
+                    //if(rid >= 1970){ //(condition)
+                    break;
+                    }
+
+                    //else{
+                    //throw new Exception("Year must be greater than 1970)");
+                   // }
+
+                //}
+                catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+        }
+
+
+	while(true) {
+
+            System.out.println("Enter Service Date:");
+            try{
+                    date = Integer.parseInt(in.readLine());
+                    System.out.println(date);
+                    //if(rid >= 1970){ //(condition)
+                    //                    break;
+                    //                                        }
+                    //
+                    //                                                            //else{
+                    //                                                                                //throw new Exception("Year must be greater than 1970)");
+                    //                                                                                                   // }
+                    //
+                    //                                                                                                                   //}
+                    //                                                                                                                                   catch(Exception e) {
+                    //                                                                                          
+                    //
+                    break;
+		}
+		catch(Exception e) {
+ 		System.out.println(e);
+		continue;
+		}
 		
 	}
-	
+
+		String complain = complaint;
+		 query = String.format( "INSERT INTO Service_Request (rid, customer_id, car_vin, date, odometer, complain) Values (%d,%d', '%s', '%s', '%s', '%s');",rid,customer_id,car_vin,date, odometer, complain);
+                                try {
+                esql.executeUpdate(query);
+
+                }
+                catch (Exception e) {
+                System.out.println(e);
+
+                }
+	}
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
 		
 	}
@@ -600,7 +842,8 @@ String query = String.format( "INSERT INTO Customer (id, fname, lname, phone, ad
 	}
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
-		
+	 String query = "";
+	 query = "SELECT C1.make, C1.model FROM Car C1 WHERE C1.vin IN ( SELECT C.car_vin FROM Service_Request S  WHERE S.car_vin = C.vin AND S.odometer < 50000  AND C.year < 1995)";				
 	}
 	
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
