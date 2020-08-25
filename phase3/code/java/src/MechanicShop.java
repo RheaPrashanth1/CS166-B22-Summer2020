@@ -330,7 +330,7 @@ public class MechanicShop{
             try{
                     first_name = in.readLine();
                     System.out.println(first_name);
-                    if(first_name!=null){ //(condition)
+                    if(first_name!=null){ 
                     break;
                     }
 
@@ -353,7 +353,7 @@ public class MechanicShop{
                     
 		    id = Integer.parseInt(in.readLine());
                     System.out.println(id);
-                    //if(first_name){ //(condition)
+                   
                     break;
                 
 
@@ -415,7 +415,7 @@ public class MechanicShop{
             try{
                     address = in.readLine();
                     System.out.println(address);
-                    if(address!=null){ //(condition)
+                    if(address!=null){ 
                     break;
                     }
 
@@ -552,7 +552,7 @@ int id;
       ///Users/rheaprashanth String query = "INSERT INTO Mechanic (id, fname, lname, experience) VALUES (" + fname + ", \'" + lname + "\', \'" + experience + "\');";
   //int experience = 5;
     String query = String.format( "INSERT INTO Mechanic (id, fname, lname, experience) Values ( %d,'%s', '%s', '%d');",id, fname, lname,experience);
-    // esql.executeUpdate(query);
+    
 
 	try {
 		esql.executeUpdate(query);
@@ -679,16 +679,19 @@ int id;
 		}
 	*/
 		String query = " ";
-		
-		String car_vin;
+		String fname,phone,address = " ";
+//		int id, rid, customer_id, date,odometer;		
+		String lname = " ";
+		int id;		
+		String car_vin, complain = "";
 		int rid;
 		int customer_id;
 		int date;
 		int odometer;
 		String complaint;
+		
 		int numPeople = 0;
-		String lname = "";
-		String searchLname = "Smith";
+		String searchLname = "";
 		
 
 		try {
@@ -707,7 +710,7 @@ int id;
 
 
 		if (numPeople == 1) {
-		//	System.out.println("one woo");
+		 
 		}
 
 
@@ -715,9 +718,252 @@ int id;
 		if (numPeople < 1) {
 			System.out.println ("Person is not registered as a customer, please register them: ");;
 
-				
+			             while(true) {
+
+            System.out.println("Enter customer first name:");
+            try{
+                    fname = in.readLine();
+                    //System.out.println(first_name);
+                    if(fname!=null){
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+
+           while(true) {
+
+            System.out.println("Enter customer id:");
+            try{
+
+                    id = Integer.parseInt(in.readLine());
+                    System.out.println(id);
+                    
+                    break;
+
+
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+       }
+
+	 while(true) {
+
+            System.out.println("Enter customer address:");
+            try{
+                    address = in.readLine();
+                    System.out.println(address);
+                    if(address!=null){ 
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+
+	 while(true) {
+
+            System.out.println("Enter customer phone-number:");
+            try{
+                    phone = in.readLine();
+                    System.out.println(phone);
+                    if(phone!=null){ 
+                    break;
+                    }
+
+                    else{
+                    throw new Exception("Something went wrong.");
+                    }
+
+
+            } catch(Exception e) {
+                System.out.println(e);
+                continue;
+            }
+
+        }
+		//String lname = "";
+	  query = String.format( "INSERT INTO Customer (id, fname, lname, phone, address) Values ( %d,'%s', '%s', '%s', '%s');",id, fname, lname, phone, address);
+     
+
+        try {
+                esql.executeUpdate(query);
 		
-		}
+                }
+                catch (Exception e) {
+                System.out.println(e);
+
+                }
+			
+		
+	
+
+		System.out.println("Now you may add Service Information for Customer: ");
+
+		
+while(true) {
+
+	System.out.println("Enter car-vin (vin)");
+	try{
+			car_vin = in.readLine();
+			System.out.println(car_vin);
+			if(car_vin!=null){ //(condition)
+			break;
+			}
+
+			else{
+			throw new Exception("Something went wrong.");
+			}
+
+
+	} catch(Exception e) {
+		System.out.println(e);
+		continue;
+	}
+
+}
+
+while(true) {
+
+	System.out.println("Enter car complaint");
+	try{
+		   complaint = in.readLine();
+			System.out.println(complaint);
+			if(complaint!=null){ //(condition)
+			break;
+			}
+
+			else{
+			throw new Exception("Something went wrong.");
+			}
+
+
+	} catch(Exception e) {
+		System.out.println(e);
+		continue;
+	}
+
+}
+
+while(true) {
+
+	System.out.println("Enter Odometer Reading:");
+	try{
+			odometer = Integer.parseInt(in.readLine());
+			System.out.println(odometer);
+			if(odometer >= 0){ //(condition)
+			break;
+			}
+
+			else{
+			throw new Exception("Year must be greater than 0)");
+			}
+
+		} catch(Exception e) {
+		System.out.println(e);
+		continue;
+	}
+}
+
+while(true) {
+
+	System.out.println("Enter RID:");
+	try{
+			rid = Integer.parseInt(in.readLine());
+			System.out.println(rid);
+			
+			break;
+			}
+
+			
+		
+		catch(Exception e) {
+		System.out.println(e);
+		continue;
+	}
+}
+
+while(true) {
+
+	System.out.println("Enter Service Date:");
+	try{
+			date = Integer.parseInt(in.readLine());
+			System.out.println(date);
+			
+			break;
+			}
+
+			
+		catch(Exception e) {
+		System.out.println(e);
+		continue;
+	}
+}
+
+
+//String getCustId = "";
+customer_id = id;
+
+int ownership_id;
+
+query = String.format( "INSERT INTO Service_Request (rid, customer_id, car_vin, date, odometer, complain) Values ( %d,%d, '%s', '%s',%d, '%s');",rid,customer_id, car_vin, date, odometer, complain);
+
+
+        try {
+                esql.executeUpdate(query);
+
+                }
+                catch (Exception e) {
+                System.out.println(e);
+
+                }
+
+
+
+while(true) {
+
+        System.out.println("Enter Ownership-id:");
+        try{
+                        ownership_id = Integer.parseInt(in.readLine());
+                        System.out.println(date);
+
+                        break;
+                        }
+
+
+                catch(Exception e) {
+                System.out.println(e);
+                continue;
+        }
+}
+
+//customer-id = id;
+
+query = String.format("INSERT INTO Ownership (ownership_id, customer_id, car_vin) Values (%d, %d, '%s');", ownership_id, customer_id, car_vin); 
+
+} //end if statement bracket
+
+
 
 		if (numPeople < 1) {
 
@@ -870,9 +1116,12 @@ int id;
 
                 }
 */
+
 	}
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
-		
+		String rid = "";
+
+		String wid = "";		
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
