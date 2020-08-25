@@ -1125,21 +1125,54 @@ query = String.format("INSERT INTO Ownership (ownership_id, customer_id, car_vin
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
-		
+	        String query = " ";
+
+		try{
+		   // query = " SELECT DISTINCT S.customer_id FROM Closed_Request C, Service_Request S WHERE bill < 100 AND S.rid = C.rid ORDER BY S.customer_id ASC;";
+			 esql.executeQueryAndPrintResult(query);
+		} catch(Exception e) {
+		   System.out.println(e);
+		}	
 	}
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
 	 String query = "";
-	 query = "SELECT C1.make, C1.model FROM Car C1 WHERE C1.vin IN ( SELECT C.car_vin FROM Service_Request S  WHERE S.car_vin = C.vin AND S.odometer < 50000  AND C.year < 1995)";				
+	 try{
+	   System.out.println("Listing first and last name of Customers with more than 20 Cars: ");
+	   query = "SELECT fname, lname FROM Customer C WHERE C.id IN (SELECT customer_id FROM Owns GROUP BY customer_id HAVING COUNT(*) > 20);"; 
+	esql.executeQueryAndPrintResult(query);
+	}catch(Exception e) {
+		 System.out.println(e);
+	}
+
+/*	
+//query = "SELECT C1.make, C1.model FROM Car C1 WHERE C1.vin IN ( SELECT C.car_vin FROM Service_Request S  WHERE S.car_vin = C.vin AND S.odometer < 50000  AND C.year < 1995)";				
+	try { 
+	System.out.println("Listing all cars built before 1995 having less than 50,000 miles: ");
+	query = "SELECT C1.make, C1.model FROM Car C1 WHERE C1.vin IN ( SELECT C.vin FROM Car C,Service_Request S  WHERE S.car_vin = C.vin AND S.odometer < 50000  AND C.year < 1995);"; 
+	esql.executeQueryAndPrintResult(query);	 
+	}catch(Exception e){
+		System.out.println(e);
+	}
+*/	
 	}
 	
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
-		
+	String query = "";
+	
+	try {
+        System.out.println("Listing all cars built before 1995 having less than 50,000 miles: ");
+        query = "SELECT C1.make, C1.model FROM Car C1 WHERE C1.vin IN ( SELECT C.vin FROM Car C,Service_Request S  WHERE S.car_vin = C.vin AND S.odometer < 50000  AND C.year < 1995);";
+        esql.executeQueryAndPrintResult(query);
+        }catch(Exception e){
+                System.out.println(e);
+        }
+	
 	}
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
 		//
-		
+           		
 	}
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
