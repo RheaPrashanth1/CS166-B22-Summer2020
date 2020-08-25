@@ -10,3 +10,4 @@ cp ../data/*.csv /tmp/$LOGNAME/test/data/.
 sleep 1
 
 psql -h /tmp/$LOGNAME/sockets $LOGNAME"_DB" < ../sql/create.sql
+psql -h /tmp/$LOGNAME/sockets $LOGNAME"_DB" < ../sql/index.sql
