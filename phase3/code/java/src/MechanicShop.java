@@ -168,7 +168,8 @@ public class MechanicShop{
 		int rowCount = 0;
 
 		//iterates through the result set and count nuber of results.
-		if(rs.next()){
+		
+		while(rs.next()){
 			rowCount++;
 		}//end while
 		stmt.close ();
@@ -351,7 +352,7 @@ public class MechanicShop{
             try{
                     
 		    id = Integer.parseInt(in.readLine());
-                    System.out.println(first_name);
+                    System.out.println(id);
                     //if(first_name){ //(condition)
                     break;
                 
@@ -685,8 +686,44 @@ int id;
 		int date;
 		int odometer;
 		String complaint;
+		int numPeople = 0;
+		String lname = "";
+		String searchLname = "Smith";
+		
 
-		while(true) {
+		try {
+		System.out.println("Enter Customer Last Name: ");
+		lname = in.readLine();
+		searchLname = String.format("SELECT * FROM Customer WHERE lname= '%s'", lname);
+		 numPeople = esql.executeQuery(searchLname);
+		 System.out.println(numPeople);
+		esql.executeQueryAndPrintResult(searchLname);
+		//	System.out.println(numPeople);
+		}catch(Exception e) {
+			System.out.println(e);
+			}
+
+//	        System.out.println(numPeople);
+
+
+		if (numPeople == 1) {
+		//	System.out.println("one woo");
+		}
+
+
+
+		if (numPeople < 1) {
+			System.out.println ("Person is not registered as a customer, please register them: ");;
+
+				
+		
+		}
+
+		if (numPeople < 1) {
+
+
+		}
+	/*while(true) {
 
             System.out.println("Enter car-vin (vin)");
             try{
@@ -832,6 +869,7 @@ int id;
                 System.out.println(e);
 
                 }
+*/
 	}
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
 		
