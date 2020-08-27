@@ -1128,14 +1128,21 @@ query = String.format("INSERT INTO Ownership (ownership_id, customer_id, car_vin
 	        String query = " ";
 
 		try{
-		   // query = " SELECT DISTINCT S.customer_id FROM Closed_Request C, Service_Request S WHERE bill < 100 AND S.rid = C.rid ORDER BY S.customer_id ASC;";
-			 esql.executeQueryAndPrintResult(query);
+		    //query = " SELECT DISTINCT S.customer_id FROM Closed_Request C, Service_Request S WHERE bill < 100 AND S.rid = C.rid ORDER BY S.customer_id ASC;";
+
+                   //query = "SELECT S.customer_id, C.bill FROM Closed_Request C, Service_Request S WHERE S.rid = C.rid GROUP BY S.customer_id HAVING C.bill < 100;";
+		
+	            //query = "SELECT CR.date, CR.comment, CR.bill FROM Service_Request SR, Closed_Request CR WHERE SR.rid = CR.rid GROUP BY SR.customer_id HAVING CR.bill < 100;"; 
+			query = "SELECT C.fname, C.lname FROM Customer C WHERE C.id IN (SELECT S.customer_id FROM Service_Request S, Closed_Request CR WHERE S.rid = CR.rid GROUP BY S.customer_id HAVING SUM (CR.bill) = 37316);";
+	 esql.executeQueryAndPrintResult(query);
 		} catch(Exception e) {
 		   System.out.println(e);
 		}	
 	}
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
+	
+        //gurpuram
 	 String query = "";
 	 try{
 	   System.out.println("Listing first and last name of Customers with more than 20 Cars: ");
@@ -1162,7 +1169,7 @@ query = String.format("INSERT INTO Ownership (ownership_id, customer_id, car_vin
 	
 	try {
         System.out.println("Listing all cars built before 1995 having less than 50,000 miles: ");
-        query = "SELECT C1.make, C1.model FROM Car C1 WHERE C1.vin IN ( SELECT C.vin FROM Car C,Service_Request S  WHERE S.car_vin = C.vin AND S.odometer < 50000  AND C.year < 1995);";
+        query = "SELECT C1.make, C1.model, C1.year FROM Car C1 WHERE C1.vin IN ( SELECT C.vin FROM Car C,Service_Request S  WHERE C.vin = S.car_vin AND S.odometer < 50000  AND C.year < 1995);";
         esql.executeQueryAndPrintResult(query);
         }catch(Exception e){
                 System.out.println(e);
@@ -1176,8 +1183,16 @@ query = String.format("INSERT INTO Ownership (ownership_id, customer_id, car_vin
 	}
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
-		//
-		
+	String query = "";
+	try{	
+	query = "SELECT C.fname, C.lname FROM Customer C WHERE C.id IN SELECT S.customer_id, SUM(bill) FROM Service_Request S, Closed_Request CR WHERE S.rid = CR.rid GROUP BY S.customer_id ORDER BY SUM(bill) ASC;";
+
+	//query = "SELECT S.rid FROM Service_Request S WHERE S.customer_id = '123';";
+esql.executeQueryAndPrintResult(query);
+	}	
+catch(Exception e){
+                System.out.println(e);
+        }
 	}
 	
 }
