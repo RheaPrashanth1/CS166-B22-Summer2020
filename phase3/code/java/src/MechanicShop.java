@@ -330,14 +330,19 @@ public class MechanicShop{
             try{
                     first_name = in.readLine();
                     System.out.println(first_name);
-                    if(first_name!=null){ 
-                    break;
-                    }
+                    
 
-                    else{
-                    throw new Exception("Something went wrong.");
-                    }
+                    //if(first_name.length() > 0){
+                    //throw new Exception("Something went wrong.");
+		//	break;
+                   // }	
+//	System.out.println(first_name.length());	
+	 if(first_name.length() <= 0){
+			throw new Exception("Need to enter something valid: ");
+		}	
+		 break;   
              
+
 
             } catch(Exception e) {
                 System.out.println(e);
