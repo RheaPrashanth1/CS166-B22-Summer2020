@@ -1190,7 +1190,7 @@ query = String.format("INSERT INTO Ownership (ownership_id, customer_id, car_vin
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
 	String query = "";
 	try{	
-	query = "SELECT C.fname, C.lname FROM Customer C WHERE C.id IN SELECT S.customer_id, SUM(bill) FROM Service_Request S, Closed_Request CR WHERE S.rid = CR.rid GROUP BY S.customer_id ORDER BY SUM(bill) ASC;";
+	query = "SELECT C.fname, C.lname FROM Customer C WHERE C.id IN SELECT S.customer_id, SUM(bill) FROM Service_Request S, Closed_Request CR WHERE S.rid = CR.rid GROUP BY S.customer_id ORDER BY SUM(bill) DESC;";
 
 	//query = "SELECT S.rid FROM Service_Request S WHERE S.customer_id = '123';";
 esql.executeQueryAndPrintResult(query);
